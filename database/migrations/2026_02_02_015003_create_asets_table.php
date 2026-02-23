@@ -13,6 +13,12 @@ return new class extends Migration
     {
         Schema::create('asets', function (Blueprint $table) {
             $table->id();
+            $table->string('kode_aset', 50)->unique();
+            $table->string('nama_aset', 150);
+            $table->foreignId('kategori_id')->constrained('categories')->onDelete('cascade');
+            $table->foreignId('lokasi_id')->constrained('locations')->onDelete('cascade');
+            $table->string('kondisi', 30)->default('baik');
+            $table->integer('jumlah')->default(1);
             $table->timestamps();
         });
     }
